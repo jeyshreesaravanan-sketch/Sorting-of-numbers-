@@ -1,1 +1,101 @@
 # Sorting-of-numbers-
+# sorting-of-numbers
+## Aim
+To write and execute an Assembly Language Program for sorting data in Ascending and  descending order using 8051 microcontroller on Keil software.
+---
+
+## Apparatus Required
+- Personal Computer  
+- Keil µVision software  
+---
+
+## Algorithm(ASCENDING ORDER)
+1. Initialize the register **R7** with count (number of elements).  
+2. Get the first two elements into two registers.  
+3. Compare the two elements:  
+   - If the value in register **R0** is lower, exchange **A** and **R0** data.  
+   - Otherwise, increment pointer and decrement register **R7**.  
+4. Check if **R7 = 0** → if yes, move the register **R0 & A**.  
+5. Increment pointer and decrement **R7**.  
+6. If **R7 ≠ 0**, repeat from Step 2.  
+7. Otherwise, stop the program.  
+---
+
+## Program (Ascending order)
+
+```asm
+MOV  RO,#40H
+MOV R6,30H
+DEC R6
+MOV A,R1
+MOV R7,A
+MOV A,@RO
+INC RO
+MOV B,@RO
+CJNE A,B,CHECK
+SJMP DOWN
+JC DOWN
+MOV @RO,A
+DEC RO
+MOV @RO,B
+INC RO
+DJNZ R6,LOOP
+DJNZ R1,LOOP1
+SJMP HERE
+END
+
+```
+## OUTPUT(Ascending order)
+<img width="1600" height="853" alt="WhatsApp Image 2026-11-17 at 1 53 00 PM" src="https://github.com/user-attachments/assets/60aa9606-9aff-41a0-87e6-8f7109c06c9f" />
+
+
+
+---
+
+## Algorithm(Descending order)
+1. Initialize the register **R7** with count.  
+2. Get first two elements in two registers.  
+3. Compare the two elements of data:  
+   - If the value of **R0** register is high, then exchange **A** and **R0** data.  
+   - Else, increment pointer and decrement register **R7**.  
+4. Check if **R7 = 0**, then move the contents of **R0** and **A**.  
+5. Again increment pointer and decrement **R7**.  
+6. Check if **R7 = 0**:  
+   - If **No**, repeat the process from Step 2.  
+   - If **Yes**, stop the program.  
+---
+## Program (Descending order)
+
+```asm
+ORG 0000H
+MOV R0,#40H
+MOV R6,30H
+DEC R6
+LOOP1: MOV A,R6
+MOV R7,A
+MOV R0,#40H
+LOOP: MOV A,@R0
+INC R0
+MOV B,@R0
+CJNE A,B,CHECK
+SJMP DOWN
+CHECK: JC DOWN
+MOV @R0,A
+DEC R0
+MOV @R0,B
+INC R0
+DOWN: DJNZ R7,LOOP
+DJNZ R6,LOOP1
+HERE: SJMP HERE
+END
+
+```
+## OUTPUT(Descending order)
+
+<img width="837" height="455" alt="WhatsApp Image 2026-11-18 at 11 02 15 AM" src="https://github.com/user-attachments/assets/f6bedeaf-7bd8-4836-993c-67ae5b8b3487" />
+
+
+---
+## RESULT:
+Thus the sorting of given data was done using 8051 keil software.
+
